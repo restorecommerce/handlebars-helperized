@@ -1,0 +1,42 @@
+{
+  "name": "restore-handlebars-helperized",
+  "version": "0.1.0",
+  "description": "Opininated handlebars based templating engine for rendering e-mail like content",
+  "main": "index",
+  "author": "Invend GmbH",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/restorecommerce/handlebars-helperized.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "restore",
+    "commerce",
+    "handlebars",
+    "helpers",
+    "layout",
+    "i18n"
+  ],
+  "dependencies": {
+    "handlebars": "^4.0.5",
+    "handlebars-layouts": "^3.1.3"
+  },
+  "devDependencies": {
+    "coveralls": "2.11.9",
+    "eslint-config-restorecommerce": "restorecommerce/eslint-config-restorecommerce",
+    "is-generator": "^1.0.3",
+    "istanbul": "^0.4.3",
+    "jshint": "^2.9.2",
+    "mocha": "^2.5.3",
+    "should": "^9.0.0"
+  },
+  "scripts": {
+    "test": "npm run lint && npm run mocha",
+    "lint": "eslint *.json *.js",
+    "mocha": "mocha ./test/*",
+    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec ./test/*.js"
+  },
+  "engines": {
+    "node": ">= 6.0.0"
+  }
+}
