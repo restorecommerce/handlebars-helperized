@@ -1,9 +1,16 @@
 'use strict';
 
-const handlebars = require('handlebars');
-const handlebarsLayouts = require('handlebars-layouts');
+// the basic building block is the handlebars rendering engine
+const hbs = require('handlebars');
 
-handlebarsLayouts.register(handlebars);
+// more functionality directly added via custom plugins from ./lib
+require('./lib/numbro-helpers')(hbs); // numbers & currencies
+require('./lib/moment-helpers')(hbs); // dates, times & durations
+require('./lib/l10n-helpers')(hbs); // localization
+
+// extend rendering with layout functionality
+const handlebarsLayouts = require('handlebars-layouts');
+handlebarsLayouts.register(hbs);
 
 /*
 const slinkHelper = require('hbs-slink-helper');
@@ -141,9 +148,9 @@ class Renderer {
   */
   constructor(template, layout) {
     if (layout) {
-      handlebars.registerPartial('layout', layout);
+      hbs.registerPartial('layout', layout);
     }
-    this.template = handlebars.compile(template);
+    this.template = hbs.compile(template);
   }
 
   /**
