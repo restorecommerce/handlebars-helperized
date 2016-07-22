@@ -52,7 +52,8 @@ describe('the handlebars extensions', function() {
     const renderer = new Renderer(tpl, null, opts);
     const context = {orderIRI: 'http://exymple.com/42'};
     const result = renderer.render(context);
-    const expectedResult = `<h1 class="vclAlignCentered">Hello Admin</h1>\n\n<p class="vclAlignCentered">\n  Payment Received\n</p>\n`;
+    const expectedResult = `<h1 class="vclAlignCentered">Hello Admin</h1>\n\n` +
+      `<p class="vclAlignCentered">\n  Payment Received: http://exymple.com/42\n</p>\n`;
     result.should.equal(expectedResult);
   });
 });
