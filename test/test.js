@@ -36,7 +36,7 @@ describe('the handlebars template engine', function() {
   });
 });
 
-describe('the handlebars extensions', function() {
+describe('the handlebars extensions', () => {
   beforeEach(() => {
     // TODO: some preparation
   });
@@ -54,6 +54,14 @@ describe('the handlebars extensions', function() {
     const result = renderer.render(context);
     const expectedResult = `<h1 class="vclAlignCentered">Hello Admin</h1>\n\n` +
       `<p class="vclAlignCentered">\n  Payment Received: http://exymple.com/42\n</p>\n`;
+    result.should.equal(expectedResult);
+  });
+
+  it('should transform numeric helpers', () => {
+    const tpl = load('numbers');
+    const renderer = new Renderer(tpl, null, {});
+    const result = renderer.render({});
+    const expectedResult = `number: 42\nprice: 42.00\nbytes: 42.00B`;
     result.should.equal(expectedResult);
   });
 });
