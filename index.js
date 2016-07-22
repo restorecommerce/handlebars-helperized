@@ -134,9 +134,9 @@ function init(options) {
   // the basic building block is the handlebars rendering engine
   const hbs = require('handlebars');
   // more functionality directly added via custom plugins from ./lib
+  require('./lib/l10n-helpers')(hbs, opts); // localization
   require('./lib/numbro-helpers')(hbs, opts); // numbers & currencies
   require('./lib/moment-helpers')(hbs, opts); // dates, times & durations
-  require('./lib/l10n-helpers')(hbs, opts); // localization
   // extend rendering with layout functionality
   const handlebarsLayouts = require('handlebars-layouts');
   handlebarsLayouts.register(hbs);
