@@ -1,5 +1,7 @@
 'use strict';
 
+const _ = require('lodash');
+
 /*
 const slinkHelper = require('hbs-slink-helper');
 
@@ -120,8 +122,15 @@ handlebars.registerHelper('dff', function(str, format, opts) {
 
 */
 
+const defaultOpts = {
+  locale: 'en_US',
+  texts: {}
+};
+
 // initializes and configures a custom handlebars instance
-function init(opts) {
+function init(options) {
+  // default values if nothing given
+  const opts = _.defaults(options, defaultOpts);
   // the basic building block is the handlebars rendering engine
   const hbs = require('handlebars');
   // more functionality directly added via custom plugins from ./lib
@@ -134,20 +143,11 @@ function init(opts) {
   return hbs;
 }
 
-/**
-the following data is expected on the context:
-
-- texts - an array of translations as key/ value object
-- locale - current locale
-- data - object with key value pairs for placeholders
-
-*/
-
 class Renderer {
   /**
   @param {String} template the template
   @param {String} layout the optional layout
-  @param {Object} settings and localization data for the renderer
+  @param {Object} text and localization string for the renderer
   */
   constructor(template, layout, opts) {
     this.hbs = init(opts);
@@ -158,7 +158,7 @@ class Renderer {
   }
 
   /**
-  @param {Object} context
+  @param {Object} context: required data for the placeholders
   @return {String} html
   */
   render(context) {
