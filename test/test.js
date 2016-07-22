@@ -1,5 +1,6 @@
 const fs = require('fs');
 const should = require('should');
+const moment = require('moment');
 
 const Renderer = require('../index');
 
@@ -50,10 +51,10 @@ describe('the handlebars extensions', () => {
       }
     };
     const renderer = new Renderer(tpl, null, opts);
-    const context = {orderIRI: 'http://exymple.com/42'};
+    const context = {orderIRI: 'http://example.com/42'};
     const result = renderer.render(context);
     const expectedResult = `<h1 class="vclAlignCentered">Hello Admin</h1>\n\n` +
-      `<p class="vclAlignCentered">\n  Payment Received: http://exymple.com/42\n</p>\n`;
+      `<p class="vclAlignCentered">\n  Payment Received: http://example.com/42\n</p>\n`;
     result.should.equal(expectedResult);
   });
 
@@ -62,6 +63,15 @@ describe('the handlebars extensions', () => {
     const renderer = new Renderer(tpl, null, {});
     const result = renderer.render({});
     const expectedResult = `number: 42\nprice: 42.00\nbytes: 42.00B`;
+    result.should.equal(expectedResult);
+  });
+
+  it('should transform time helpers', () => {
+    const tpl = load('times');
+    const renderer = new Renderer(tpl, null, {});
+    const context = { yesterday: moment("07-22-2016", "MM-DD-YYYY") };
+    const result = renderer.render(context);
+    const expectedResult = `ago: 18 hours ago\ndf: 07/22/2016\ndtf: July 22, 2016 12:00 AM`;
     result.should.equal(expectedResult);
   });
 });
