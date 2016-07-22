@@ -1,0 +1,24 @@
+<h1 class="vclAlignCentered">{{t 'emails.common.greeting' givenName=person.givenName familyName=person.familyName}},</h1>
+
+<p class="vclAlignCentered">
+  {{t 'emails.orderCancellation.message' invoiceNumber=order.orderNumber}}
+</p>
+
+{{#if paid}}
+  <p class="vclAlignCentered">
+    {{t 'emails.orderCancellation.refundMessage'}}
+  </p>
+{{/if}}
+
+<p class="vclAlignCentered">
+  {{{t 'emails.common.footer' appName=app.name}}}
+  <br>
+  <br>
+  <img src="cid:logo"/>
+  <br>
+  <br>
+  {{t 'emails.common.footerText' name=organization.legalName street=organization.address.street
+    postcode=organization.address.postcode locality=organization.address.locality
+    country=organization.address.country vatID=organization.vatID}}
+</p>
+
