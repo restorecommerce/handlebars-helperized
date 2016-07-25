@@ -52,19 +52,6 @@ var dff = function(str, format, locale, timezone) {
   return moment(new Date(str)).tz(timezone).format(format);
 };
 
-var increment = function(str) {
-  var toIncrement = parseInt(str);
-  if (!isNaN(toIncrement)) {
-    return parseInt(str) + 1;
-  }
-
-  return '0';
-};
-
-handlebars.registerHelper('increment', function(str, opts) {
-  return increment(str);
-});
-
 handlebars.registerHelper('t', function(str, opts) {
   const texts = opts.data.root.texts;
   const locale = opts.data.root.locale;
