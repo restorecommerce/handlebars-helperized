@@ -17,6 +17,7 @@ function init(options) {
   require('./lib/l10n-helpers')(hbs, opts); // localization
   require('./lib/numbro-helpers')(hbs, opts); // numbers & currencies
   require('./lib/moment-helpers')(hbs, opts); // dates, times & durations
+  require('./lib/custom-helpers')(hbs, opts); // everything else
   // extend rendering with layout functionality
   const handlebarsLayouts = require('handlebars-layouts');
   handlebarsLayouts.register(hbs);
