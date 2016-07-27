@@ -190,4 +190,13 @@ describe('The README examples', () => {
     const expectedResult = '<p>Hello,<i>John</i></p>';
     result.should.equal(expectedResult);
   });
+
+  it('should pass the localization example', () => {
+    const tpl = '<h1>{{t "greeting"}} {{name}}</h1>';
+    const opts = { texts: { greeting: 'Hallo' } };
+    const renderer = new Renderer(tpl, null, opts);
+    const result = renderer.render({ name: 'John' });
+    const expectedResult = '<h1>Hallo John</h1>';
+    result.should.equal(expectedResult);
+  });
 });
