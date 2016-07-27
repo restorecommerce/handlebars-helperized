@@ -80,9 +80,14 @@ describe('the handlebars extensions', () => {
     it('should format timestamps', () => {
       const tpl = load('times');
       const renderer = new Renderer(tpl, null, {});
-      const context = { yesterday: moment('07-22-2016 13:37:00', 'MM-DD-YYYY HH:mm:ss') };
+      const ts = '07-22-2016 13:37:00';
+      const format = 'MM-DD-YYYY HH:mm:ss';
+      const tz = moment.tz.guess();
+      const yesterday = moment.tz(ts, format, tz);
+      const context = { yesterday };
       const result = renderer.render(context);
-      const expectedResult = `ago: 5 hours ago\ndf: 07/22/2016\ndtf: July 22, 2016 1:37 PM`;
+      const ago = yesterday.fromNow();
+      const expectedResult = 'ago: ' + ago + `\ndf: 07/22/2016\ndtf: July 22, 2016 1:37 PM`;
       result.should.equal(expectedResult);
     });
   });
@@ -114,11 +119,15 @@ describe('the handlebars extensions', () => {
       };
       const tpl = load('invoice');
       const renderer = new Renderer(tpl, null, opts);
+      const ts = '07-22-2016 13:37:00';
+      const format = 'MM-DD-YYYY HH:mm:ss';
+      const tz = moment.tz.guess();
+      const yesterday = moment.tz(ts, format, tz);
       const context = {
         app: {
           name: 'the store'
         },
-        orderDate: moment('07-22-2016 13:37:00', 'MM-DD-YYYY HH:mm:ss'),
+        orderDate: yesterday,
         invoice: {
           number: 42,
           orderNumber: 24
