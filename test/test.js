@@ -163,6 +163,9 @@ describe('the handlebars extensions', () => {
   });
 });
 
+/**
+ * Documented API testing (stuff on README should work as expected)
+ */
 describe('The README examples', () => {
   it('should pass the basic example', () => {
     const tpl = '<h1>Hello {{name}}</h1>';
