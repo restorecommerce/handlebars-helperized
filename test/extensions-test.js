@@ -3,10 +3,8 @@
 
 // eslint-disable-next-line
 const should = require('should');
-
 const fs = require('fs');
 const moment = require('moment-timezone');
-
 const Renderer = require('../index');
 
 const load = function loadTemplateFile(name) {

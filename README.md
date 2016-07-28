@@ -107,8 +107,9 @@ const result = renderer.render({ name: 'John' });
 Additionally, bespoke helpers for formatting date, time and numbers may be used. Have a look at the extensions itself for an overview of the provided helpers. An example for these formatting capabilities looks like this:
 
 ````js
-// require the library
+// require the libraries
 const Renderer = require('handlebars-helperized');
+const moment = require('moment-timezone');
 
 // initialize a renderer instance with a template string
 const tpl = '<p>You paid ${{nfc price}} on {{df date}}</p>';
