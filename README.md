@@ -123,3 +123,23 @@ const yesterday = moment.tz(ts, format, tz);
 const result = renderer.render({ price: 1.99, date: yesterday });
 // result === '<p>You paid $1.99 on 07/22/2016</p>';
 ````
+
+If you want to display these helperized information with localized formatting, just set the `locale` setting (default: `en_US`) to the desired cultural area like this:
+
+````js
+// require the libraries
+const Renderer = require('handlebars-helperized');
+const moment = require('moment-timezone');
+
+// initialize a renderer instance with a template string
+const tpl = '<p>You paid ${{nfc price}} on {{df date}}</p>';
+const renderer = new Renderer(tpl, null, { locale: 'de_DE' });
+
+// create a timestamp & use the renderer with arbitrary contextual data
+const ts = '07-22-2016 13:37:00';
+const format = 'MM-DD-YYYY HH:mm:ss';
+const tz = moment.tz.guess();
+const yesterday = moment.tz(ts, format, tz);
+const result = renderer.render({ price: 1.99, date: yesterday });
+// result === '<p>You paid $1,99 on 22.07.2016</p>';
+````
