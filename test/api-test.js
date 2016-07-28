@@ -3,7 +3,7 @@
 
 // eslint-disable-next-line
 const should = require('should');
-// const moment = require('moment-timezone');
+const moment = require('moment-timezone');
 
 const Renderer = require('../index');
 
@@ -45,6 +45,27 @@ describe('The README examples', () => {
     const renderer = new Renderer(tpl, null, opts);
     const result = renderer.render({ name: 'John' });
     const expectedResult = '<h1>Hallo John</h1>';
+    result.should.equal(expectedResult);
+  });
+
+  it('should pass the localization example with context', () => {
+    const tpl = '<h1>{{t "greeting" name=name}}</h1>';
+    const opts = { texts: { greeting: 'Hallo {{name}}' } };
+    const renderer = new Renderer(tpl, null, opts);
+    const result = renderer.render({ name: 'John' });
+    const expectedResult = '<h1>Hallo John</h1>';
+    result.should.equal(expectedResult);
+  });
+
+  it('should pass the formatting example', () => {
+    const tpl = '<p>You paid ${{nfc price}} on {{df date}}</p>';
+    const renderer = new Renderer(tpl);
+    const ts = '07-22-2016 13:37:00';
+    const format = 'MM-DD-YYYY HH:mm:ss';
+    const tz = moment.tz.guess();
+    const yesterday = moment.tz(ts, format, tz);
+    const result = renderer.render({ price: 1.99, date: yesterday });
+    const expectedResult = '<p>You paid $1.99 on 07/22/2016</p>';
     result.should.equal(expectedResult);
   });
 });

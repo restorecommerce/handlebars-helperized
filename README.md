@@ -79,3 +79,46 @@ const renderer = new Renderer(tpl, null, opts);
 const result = renderer.render({ name: 'John' });
 // result === '<h1>Hallo John</h1>';
 ````
+
+It is also possible to have data placeholders *within* the translation texts as well, like this:
+
+````js
+// require the library
+const Renderer = require('handlebars-helperized');
+
+// template string with translation placeholder
+const tpl = `<h1>{{t 'greeting' name=name}}</h1>`;
+
+// options object with translation texts included
+const opts = {
+  texts: {
+    'greeting': 'Hallo {{name}}'
+  }
+}
+
+// renderer instance without a layout but with translation options
+const renderer = new Renderer(tpl, null, opts);
+
+// use the renderer with arbitrary contextual data
+const result = renderer.render({ name: 'John' });
+// result === '<h1>Hallo John</h1>';
+````
+
+Additionally, bespoke helpers for formatting date, time and numbers may be used. Have a look at the extensions itself for an overview of the provided helpers. An example for these formatting capabilities looks like this:
+
+````js
+// require the library
+const Renderer = require('handlebars-helperized');
+
+// initialize a renderer instance with a template string
+const tpl = '<p>You paid ${{nfc price}} on {{df date}}</p>';
+const renderer = new Renderer(tpl);
+
+// create a timestamp & use the renderer with arbitrary contextual data
+const ts = '07-22-2016 13:37:00';
+const format = 'MM-DD-YYYY HH:mm:ss';
+const tz = moment.tz.guess();
+const yesterday = moment.tz(ts, format, tz);
+const result = renderer.render({ price: 1.99, date: yesterday });
+// result === '<p>You paid $1.99 on 07/22/2016</p>';
+````
