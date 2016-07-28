@@ -67,4 +67,16 @@ describe('The README examples', () => {
     const expectedResult = '<p>You paid $1.99 on 07/22/2016</p>';
     result.should.equal(expectedResult);
   });
+
+  it('should pass the formatting example with german locale', () => {
+    const tpl = '<p>You paid ${{nfc price}} on {{df date}}</p>';
+    const renderer = new Renderer(tpl, null, { locale: 'de_DE' });
+    const ts = '07-22-2016 13:37:00';
+    const format = 'MM-DD-YYYY HH:mm:ss';
+    const tz = moment.tz.guess();
+    const yesterday = moment.tz(ts, format, tz);
+    const result = renderer.render({ price: 1.99, date: yesterday });
+    const expectedResult = '<p>You paid $1,99 on 22.07.2016</p>';
+    result.should.equal(expectedResult);
+  });
 });
