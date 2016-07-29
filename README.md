@@ -56,7 +56,7 @@ const result = renderer.render({ name: 'John' });
 // result === '<p>Hello, <i>John</i></h1>';
 ````
 
-For localized content, you can leverage the `t` helper inside of your templates and provide **t**ranslation templates as the *third* parameter of the renderer like this:
+For localized content, you can leverage the `t` helper inside of your templates and provide **t**ranslation texts as the *third* parameter of the renderer like this:
 
 ````js
 // require the library
@@ -104,7 +104,7 @@ const result = renderer.render({ name: 'John' });
 // result === '<h1>Hallo John</h1>';
 ````
 
-Additionally, bespoke helpers for formatting date, time and numbers may be used. Have a look at the extensions itself for an overview of the provided helpers. An example for these formatting capabilities looks like this:
+Additionally, the injected extensions for formatting date, time and numbers may be used. Have a look at the extensions itself for an overview of the provided helpers, or see a summary below. An example for these formatting capabilities looks like this:
 
 ````js
 // require the libraries
@@ -143,3 +143,80 @@ const yesterday = moment.tz(ts, format, tz);
 const result = renderer.render({ price: 1.99, date: yesterday });
 // result === '<p>You paid $1,99 on 22.07.2016</p>';
 ````
+
+## Injected Extensions Overview
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Argument(s)</th>
+    <th>Result</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>nfn</code></td>
+    <td>int or float</td>
+    <td>absolute number</td>
+    <td>For numeric values without decimals</td>
+  </tr>
+  <tr>
+    <td><code>nfc</code></td>
+    <td>int or float</td>
+    <td>currency-style formatted number</td>
+    <td>For currency based numeric values</td>
+  </tr>
+  <tr>
+    <td><code>nfb</code></td>
+    <td>int or float</td>
+    <td>byte-style formatted number</td>
+    <td>For byte based numeric values</td>
+  </tr>
+  <tr>
+    <td><code>increment</code></td>
+    <td>int or float</td>
+    <td>the given number increased by 1</td>
+    <td>For byte based numeric values</td>
+  </tr>
+  <tr>
+    <td><code>ago</code></td>
+    <td>Date</td>
+    <td>relative time string, human readable</td>
+    <td>point in time relative to current point in time</td>
+  </tr>
+  <tr>
+    <td><code>df</code></td>
+    <td>Date</td>
+    <td>string</td>
+    <td>Formatted Date string, short notation</td>
+  </tr>
+  <tr>
+    <td><code>dfl</code></td>
+    <td>Date</td>
+    <td>string</td>
+    <td>Formatted Date string, long notation</td>
+  </tr>
+  <tr>
+    <td><code>tf</code></td>
+    <td>Date</td>
+    <td>string</td>
+    <td>Formatted Time string</td>
+  </tr>
+  <tr>
+    <td><code>dtf</code></td>
+    <td>Date</td>
+    <td>string</td>
+    <td>Formatted Datetime string</td>
+  </tr>
+  <tr>
+    <td><code>dff</code></td>
+    <td>Date, format-string</td>
+    <td>string</td>
+    <td>Formatted Datetime string with given format</td>
+  </tr>
+  <tr>
+    <td><code>t</code></td>
+    <td>lookup-string</td>
+    <td>translation-string</td>
+    <td>inserts the given translation text in-place. Looks for a translation text with they key <code>lookup-string</code> within a given <code>opts.texts</code> object in the renderer instance.</td>
+  </tr>
+</table>
