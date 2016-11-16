@@ -8,16 +8,18 @@ The following helpers are injected by default:
 - [numbro](https://www.npmjs.com/package/numbro) for number formatting
 - [moment-timezone](https://www.npmjs.com/package/moment-timezone) for proper date/time handling
 
-Additionally, a lightweight localization plugin is provided through a handlebars extension `t`.
+Additionally, a lightweight localization plugin is provided through a handlebars
+extension `t`.
 
 ## Installation & Usage
 
-This renderer can be used *standalone* in any node.js project on the server side. Due to the heavy weight, this pre-charged template renderer is mainly
-intended for *server side usage*.
+This renderer can be used *standalone* in any node.js project on the server side.
+Due to the heavy weight, this pre-charged template renderer is mainly intended
+for *server side usage*.
 
 The simplest use case looks like this:
 
-````js
+```js
 // require the library
 const Renderer = require('handlebars-helperized');
 
@@ -28,11 +30,12 @@ const renderer = new Renderer(tpl);
 // use the renderer with arbitrary contextual data
 const result = renderer.render({ name: 'John' });
 // result === '<h1>Hello John</h1>';
-````
+```
 
-If you want to use an additional layout template to enclose your main template, just pass the renderer an additional parameter, like this:
+If you want to use an additional layout template to enclose your main template,
+just pass the renderer an additional parameter, like this:
 
-````js
+```js
 // require the library
 const Renderer = require('handlebars-helperized');
 
@@ -54,11 +57,13 @@ const renderer = new Renderer(tpl, layout);
 // use the renderer with arbitrary contextual data
 const result = renderer.render({ name: 'John' });
 // result === '<p>Hello, <i>John</i></h1>';
-````
+```
 
-For localized content, you can leverage the `t` helper inside of your templates and provide **t**ranslation texts as the *third* parameter of the renderer like this:
+For localized content, you can leverage the `t` helper inside of your templates
+and provide **t**ranslation texts as the *third* parameter of the renderer
+like this:
 
-````js
+```js
 // require the library
 const Renderer = require('handlebars-helperized');
 
@@ -78,11 +83,12 @@ const renderer = new Renderer(tpl, null, opts);
 // use the renderer with arbitrary contextual data
 const result = renderer.render({ name: 'John' });
 // result === '<h1>Hallo John</h1>';
-````
+```
 
-It is also possible to have data placeholders *within* the translation texts as well, like this:
+It is also possible to have data placeholders *within* the translation texts
+as well, like this:
 
-````js
+```js
 // require the library
 const Renderer = require('handlebars-helperized');
 
@@ -102,11 +108,14 @@ const renderer = new Renderer(tpl, null, opts);
 // use the renderer with arbitrary contextual data
 const result = renderer.render({ name: 'John' });
 // result === '<h1>Hallo John</h1>';
-````
+```
 
-Additionally, the injected extensions for formatting date, time and numbers may be used. Have a look at the extensions itself for an overview of the provided helpers, or see a summary below. An example for these formatting capabilities looks like this:
+Additionally, the injected extensions for formatting date, time and numbers
+may be used. Have a look at the extensions itself for an overview of the
+provided helpers, or see a summary below. An example for these formatting
+capabilities looks like this:
 
-````js
+```js
 // require the libraries
 const Renderer = require('handlebars-helperized');
 const moment = require('moment-timezone');
@@ -122,11 +131,13 @@ const tz = moment.tz.guess();
 const yesterday = moment.tz(ts, format, tz);
 const result = renderer.render({ price: 1.99, date: yesterday });
 // result === '<p>You paid $1.99 on 07/22/2016</p>';
-````
+```
 
-If you want to display these helperized information with localized formatting, just set the `locale` setting (default: `en_US`) to the desired cultural area like this:
+If you want to display these helperized information with localized formatting,
+just set the `locale` setting (default: `en_US`) to the desired cultural area
+like this:
 
-````js
+```js
 // require the libraries
 const Renderer = require('handlebars-helperized');
 const moment = require('moment-timezone');
@@ -142,7 +153,7 @@ const tz = moment.tz.guess();
 const yesterday = moment.tz(ts, format, tz);
 const result = renderer.render({ price: 1.99, date: yesterday });
 // result === '<p>You paid $1,99 on 22.07.2016</p>';
-````
+```
 
 ## Injected Extensions Overview
 

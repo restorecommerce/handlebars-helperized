@@ -25,13 +25,13 @@
     "numbro": "^1.8.1"
   },
   "devDependencies": {
-    "coveralls": "2.11.9",
+    "coveralls": "^2.11.15",
     "eslint-config-restorecommerce": "restorecommerce/eslint-config-restorecommerce",
     "is-generator": "^1.0.3",
     "istanbul": "^0.4.3",
     "jshint": "^2.9.2",
-    "mocha": "^2.5.3",
-    "should": "^9.0.0"
+    "mocha": "^3.1.2",
+    "should": "^11.1.1"
   },
   "scripts": {
     "test": "npm run lint && npm run mocha",

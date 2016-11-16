@@ -1,4 +1,5 @@
 'use strict';
+
 /* eslint-env node, mocha */
 
 // eslint-disable-next-line
