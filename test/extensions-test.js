@@ -39,7 +39,7 @@ describe('the handlebars extensions', () => {
       const tpl = load('numbers');
       const renderer = new Renderer(tpl, null, {});
       const result = renderer.render({});
-      const expectedResult = `number: 42\nprice: 42.00\nbytes: 42.00B`;
+      const expectedResult = `number: 42\nprice: 42.00\nbytes: 42.00B\n`;
       result.should.equal(expectedResult);
     });
   });
@@ -122,7 +122,8 @@ describe('the handlebars extensions', () => {
         },
         paymentMethodAdditionalType: {
           name: 'cash'
-        }
+        },
+        total: 0.0
       };
       const result = renderer.render(context);
       // eslint-disable-next-line

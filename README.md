@@ -1,6 +1,6 @@
 #  handlebars-helperized
 
-Opininated handlebars based templating engine for rendering e-mail like content.
+Opinionated handlebars based templating engine for rendering e-mail like content.
 
 The following helpers are injected by default:
 
@@ -8,7 +8,7 @@ The following helpers are injected by default:
 - [numbro](https://www.npmjs.com/package/numbro) for number formatting
 - [moment-timezone](https://www.npmjs.com/package/moment-timezone) for proper date/time handling
 
-Additionally, a lightweight localization plugin is provided through a handlebars
+Additionally, a lightweight localization plug-in is provided through a handlebars
 extension `t`.
 
 ## Installation & Usage
@@ -59,9 +59,8 @@ const result = renderer.render({ name: 'John' });
 // result === '<p>Hello, <i>John</i></h1>';
 ```
 
-For localized content, you can leverage the `t` helper inside of your templates
-and provide **t**ranslation texts as the *third* parameter of the renderer
-like this:
+For localized content, the `t` helper can be used like shown below.
+**t**ranslation texts can be provided as *third* parameter of the renderer.
 
 ```js
 // require the library
