@@ -1,5 +1,5 @@
 {
-  "name": "restore-handlebars-helperized",
+  "name": "@restorecommerce/handlebars-helperized",
   "version": "0.1.0",
   "description": "Opininated handlebars based templating engine for rendering e-mail like content",
   "main": "index",
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "coveralls": "^2.13.1",
-    "eslint-config-restorecommerce": "restorecommerce/eslint-config-restorecommerce",
+    "@restorecommerce/eslint-config-restorecommerce": "github:restorecommerce/eslint-config-restorecommerce",
     "is-generator": "^1.0.3",
     "istanbul": "^0.4.3",
     "jshint": "^2.9.2",
@@ -40,6 +40,6 @@
     "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec ./test/*.js"
   },
   "engines": {
-    "node": ">= 6.0.0"
+    "node": ">= 8.0.0"
   }
 }
