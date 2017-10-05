@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+const juice = require('juice');
 
 const defaultOpts = {
   locale: 'en_US',
@@ -30,8 +31,10 @@ class Renderer {
   @param {String} layout the optional layout
   @param {Object} text and localization string for the renderer
   */
-  constructor(template, layout, opts) {
+  constructor(template, layout, style, opts) {
+
     this.hbs = init(opts);
+    this.style = style;
     if (layout) {
       this.hbs.registerPartial('layout', layout);
     }
@@ -43,7 +46,13 @@ class Renderer {
   @return {String} html
   */
   render(context) {
-    return this.template(context);
+    let html = this.template(context);
+
+    if (this.style) {
+      html = juice.inlineContent(html, this.style);
+    }
+
+    return html;
   }
 }
 
