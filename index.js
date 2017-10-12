@@ -7,7 +7,7 @@ const defaultOpts = {
   texts: {}
 };
 
-// initializes and configures a custom handlebars instance
+// Initializes and configures a custom handlebars instance
 function init(options) {
   // default values if nothing given
   const opts = _.defaults(options, defaultOpts);
