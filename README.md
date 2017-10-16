@@ -11,10 +11,6 @@ The following helpers are injected by default:
 Additionally, a lightweight localization plug-in is provided through a handlebars
 extension `t`.
 
-## Installation
-
-``npm install restorecommerce/handlebars-helperized``
-
 ## Usage
 
 This renderer can be used *standalone* in any node.js project on the server side.
