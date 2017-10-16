@@ -112,7 +112,7 @@ const opts = {
 }
 
 // renderer instance without a layout but with translation options
-const renderer = new Renderer(tpl, null, opts);
+const renderer = new Renderer(tpl, null, null, opts);
 
 // use the renderer with arbitrary contextual data
 const result = renderer.render({ name: 'John' });
@@ -153,7 +153,7 @@ const moment = require('moment-timezone');
 
 // initialize a renderer instance with a template string
 const tpl = '<p>You paid ${{nfc price}} on {{df date}}</p>';
-const renderer = new Renderer(tpl, null, { locale: 'de_DE' });
+const renderer = new Renderer(tpl, null, null, { locale: 'de_DE' });
 
 // create a timestamp & use the renderer with arbitrary contextual data
 const ts = '07-22-2016 13:37:00';
