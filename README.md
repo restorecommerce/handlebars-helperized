@@ -13,7 +13,7 @@ extension `t`.
 
 ## Installation
 
-npm install restorecommerce/handlebars-helperized
+``npm install restorecommerce/handlebars-helperized``
 
 ## Usage
 
