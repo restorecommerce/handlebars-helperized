@@ -11,7 +11,11 @@ The following helpers are injected by default:
 Additionally, a lightweight localization plug-in is provided through a handlebars
 extension `t`.
 
-## Installation & Usage
+## Installation
+
+npm install restorecommerce/handlebars-helperized
+
+## Usage
 
 This renderer can be used *standalone* in any node.js project on the server side.
 Due to the heavy weight, this pre-charged template renderer is mainly intended
@@ -59,8 +63,18 @@ const result = renderer.render({ name: 'John' });
 // result === '<p>Hello, <i>John</i></h1>';
 ```
 
+It is also possible to provide CSS content to be inlined in the produced HTML. Such is done by using the Renderer's *third* parameter. Style inling is performed using [juice](https://github.com/Automattic/juice).
+
+```js
+...
+const style = 'div { color: red, text-align: center }';
+const renderer = new Renderer(tpl, layout, style);
+const result = renderer.render({ name: 'John' });
+// result === '<div style="color: red; text-align: center;">Hello, <i>John</i></div>'
+```
+
 For localized content, the `t` helper can be used like shown below.
-**t**ranslation texts can be provided as *third* parameter of the renderer.
+Translation texts can be provided as *third* parameter of the renderer.
 
 ```js
 // require the library
@@ -77,7 +91,7 @@ const opts = {
 }
 
 // renderer instance without a layout but with translation options
-const renderer = new Renderer(tpl, null, opts);
+const renderer = new Renderer(tpl, null, null, opts);
 
 // use the renderer with arbitrary contextual data
 const result = renderer.render({ name: 'John' });
