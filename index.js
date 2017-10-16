@@ -32,7 +32,6 @@ class Renderer {
   @param {Object} text and localization string for the renderer
   */
   constructor(template, layout, style, opts) {
-
     this.hbs = init(opts);
     this.style = style;
     if (layout) {
