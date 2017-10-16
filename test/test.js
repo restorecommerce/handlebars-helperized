@@ -19,6 +19,7 @@ const load = function loadTemplateFile(name) {
 const basicTpl = load('basic');
 const layoutTpl = load('layout');
 const layoutUseTpl = load('layout-use');
+const style = fs.readFileSync('./test/templates/basic.css', 'utf-8');
 
 /**
  * Core functionality testing
@@ -37,6 +38,13 @@ describe('the handlebars template engine', () => {
     let result = renderer.render(data);
     result = result.replace(/\s/g, '');
     result.should.equal('<div>HeaderDefaultContentMainOverwrittenContent</div>');
+    done();
+  });
+  it('should be able to render templates with a style', (done) => {
+    const renderer = new Renderer(basicTpl, layoutUseTpl, style);
+    let result = renderer.render(data);
+    result = result.replace(/\r?\n|\r/g, '');
+    result.should.equal('<div style="color: red; text-align: center;">John Doe</div>');
     done();
   });
 });

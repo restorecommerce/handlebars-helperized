@@ -42,7 +42,7 @@ describe('The README examples', () => {
   it('should pass the localization example', () => {
     const tpl = '<h1>{{t "greeting"}} {{name}}</h1>';
     const opts = { texts: { greeting: 'Hallo' } };
-    const renderer = new Renderer(tpl, null, opts);
+    const renderer = new Renderer(tpl, null, null, opts);
     const result = renderer.render({ name: 'John' });
     const expectedResult = '<h1>Hallo John</h1>';
     result.should.equal(expectedResult);
@@ -51,7 +51,7 @@ describe('The README examples', () => {
   it('should pass the localization example with context', () => {
     const tpl = '<h1>{{t "greeting" name=name}}</h1>';
     const opts = { texts: { greeting: 'Hallo {{name}}' } };
-    const renderer = new Renderer(tpl, null, opts);
+    const renderer = new Renderer(tpl, null, null, opts);
     const result = renderer.render({ name: 'John' });
     const expectedResult = '<h1>Hallo John</h1>';
     result.should.equal(expectedResult);
@@ -69,9 +69,18 @@ describe('The README examples', () => {
     result.should.equal(expectedResult);
   });
 
+  it('should pass the formatting example directly from the template', () => {
+    const tpl = '<p>You paid ${{nfc price}} on {{dff date \'YYYY-DD-MM HH:mm:ss\'}}</p>';
+    const renderer = new Renderer(tpl);
+    const ts = '07-22-2016 13:37:00';
+    const result = renderer.render({ price: 1.99, date: ts });
+    const expectedResult = '<p>You paid $1.99 on 2016-22-07 13:37:00</p>';
+    result.should.equal(expectedResult);
+  });
+
   it('should pass the formatting example with german locale', () => {
     const tpl = '<p>You paid ${{nfc price}} on {{df date}}</p>';
-    const renderer = new Renderer(tpl, null, { locale: 'de_DE' });
+    const renderer = new Renderer(tpl, null, null, { locale: 'de_DE' });
     const ts = '07-22-2016 13:37:00';
     const format = 'MM-DD-YYYY HH:mm:ss';
     const tz = moment.tz.guess();

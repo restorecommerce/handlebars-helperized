@@ -25,7 +25,7 @@ describe('the handlebars extensions', () => {
           'emails.paymentNotification.message': 'Payment Received: {{orderIRI}}'
         }
       };
-      const renderer = new Renderer(tpl, null, opts);
+      const renderer = new Renderer(tpl, null, null, opts);
       const context = { orderIRI: 'http://example.com/42' };
       const result = renderer.render(context);
       const expectedResult = `<h1 class="vclAlignCentered">Hello Admin</h1>\n\n` +
@@ -37,7 +37,7 @@ describe('the handlebars extensions', () => {
   describe('numbers', () => {
     it('should resolve placeholders', () => {
       const tpl = load('numbers');
-      const renderer = new Renderer(tpl, null, {});
+      const renderer = new Renderer(tpl, null, null, {});
       const result = renderer.render({});
       const expectedResult = `number: 42\nprice: 42.00\nbytes: 42.00B\n`;
       result.should.equal(expectedResult);
@@ -48,7 +48,7 @@ describe('the handlebars extensions', () => {
   describe('datetimes', () => {
     it('should format timestamps', () => {
       const tpl = load('times');
-      const renderer = new Renderer(tpl, null, {});
+      const renderer = new Renderer(tpl, null, null, {});
       const ts = '07-22-2016 13:37:00';
       const format = 'MM-DD-YYYY HH:mm:ss';
       const tz = moment.tz.guess();
@@ -87,7 +87,7 @@ describe('the handlebars extensions', () => {
         }
       };
       const tpl = load('invoice');
-      const renderer = new Renderer(tpl, null, opts);
+      const renderer = new Renderer(tpl, null, null, opts);
       const ts = '07-22-2016 13:37:00';
       const format = 'MM-DD-YYYY HH:mm:ss';
       const tz = moment.tz.guess();
