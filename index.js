@@ -48,7 +48,15 @@ class Renderer {
     let html = this.template(context);
 
     if (this.style) {
-      html = juice.inlineContent(html, this.style);
+      html = juice.inlineContent(html, this.style, {
+        inlinePseudoElements: true,
+        preserveImportant: true,
+        preserveMediaQueries: true,
+        preserveFontFaces: true,
+        applyWidthAttributes: true,
+        applyHeightAttributes: true,
+        insertPreservedExtraCss: true
+      });
     }
 
     return html;
