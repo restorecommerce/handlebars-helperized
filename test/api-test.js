@@ -72,9 +72,9 @@ describe('The README examples', () => {
   it('should pass the formatting example directly from the template', () => {
     const tpl = '<p>You paid ${{nfc price}} on {{dff date \'YYYY-DD-MM HH:mm:ss\'}}</p>';
     const renderer = new Renderer(tpl);
-    const ts = '07-22-2016 13:37:00';
+    const ts = '2018-03-02T10:46:43.246';
     const result = renderer.render({ price: 1.99, date: ts });
-    const expectedResult = '<p>You paid $1.99 on 2016-22-07 13:37:00</p>';
+    const expectedResult = '<p>You paid $1.99 on 2018-02-03 10:46:43</p>';
     result.should.equal(expectedResult);
   });
 
