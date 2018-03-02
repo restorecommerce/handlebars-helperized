@@ -9,7 +9,7 @@ const moment = require('moment-timezone');
 const Renderer = require('../index');
 
 const load = function loadTemplateFile(name) {
-  return fs.readFileSync('./test/templates/' + name + '.hbs', 'utf-8');
+  return fs.readFileSync(`./test/templates/${name}.hbs`, 'utf-8');
 };
 
 /**
@@ -56,7 +56,7 @@ describe('the handlebars extensions', () => {
       const context = { yesterday };
       const result = renderer.render(context);
       const ago = yesterday.fromNow();
-      const expectedResult = 'ago: ' + ago + `\ndf: 07/22/2016\ndtf: July 22, 2016 1:37 PM`;
+      const expectedResult = 'ago: ' + ago + `\ndf: 07/22/2016\ndtf: July 22, 2016 1:37 PM\n`;
       result.should.equal(expectedResult);
     });
   });

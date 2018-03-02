@@ -23,12 +23,11 @@
     "juice": "^4.2.0",
     "lodash": "^4.17.4",
     "moment-timezone": "^0.5.13",
-    "numbro": "^1.11.0"
+    "numbro": "1.11.0"
   },
   "devDependencies": {
     "@restorecommerce/eslint-config-restorecommerce": "^0.1.0",
     "coveralls": "^3.0.0",
-    "is-generator": "^1.0.3",
     "istanbul": "^0.4.5",
     "jshint": "^2.9.5",
     "mocha": "^4.0.1",

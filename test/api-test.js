@@ -70,7 +70,7 @@ describe('The README examples', () => {
   });
 
   it('should pass the formatting example directly from the template', () => {
-    const tpl = '<p>You paid ${{nfc price}} on {{dff date \'YYYY-DD-MM HH:mm:ss\'}}</p>';
+    const tpl = '<p>You paid ${{nfc price}} on {{dff date format=\'YYYY-DD-MM HH:mm:ss\'}}</p>';
     const renderer = new Renderer(tpl);
     const ts = '2018-03-02T10:46:43.246';
     const result = renderer.render({ price: 1.99, date: ts });
@@ -78,9 +78,19 @@ describe('The README examples', () => {
     result.should.equal(expectedResult);
   });
 
+  it('should format with a custom timezone', () => {
+    const tpl = '<p>You paid ${{nfc price}} on {{dff date format=\'YYYY-DD-MM HH:mm:ss\' timezone="Europe/Moscow"}}</p>';
+    const renderer = new Renderer(tpl);
+    const ts = '2018-03-02T10:46:43.246Z';
+    const result = renderer.render({ price: 1.99, date: ts });
+    // Moscow is 3 hours in advance of GMT
+    const expectedResult = '<p>You paid $1.99 on 2018-02-03 13:46:43</p>';
+    result.should.equal(expectedResult);
+  });
+
   it('should pass the formatting example with german locale', () => {
     const tpl = '<p>You paid ${{nfc price}} on {{df date}}</p>';
-    const renderer = new Renderer(tpl, null, null, { locale: 'de_DE' });
+    const renderer = new Renderer(tpl, null, null, { locale: 'de-DE' });
     const ts = '07-22-2016 13:37:00';
     const format = 'MM-DD-YYYY HH:mm:ss';
     const tz = moment.tz.guess();
