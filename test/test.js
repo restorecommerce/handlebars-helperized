@@ -13,7 +13,7 @@ const data = {
 };
 
 const load = function loadTemplateFile(name) {
-  return fs.readFileSync('./test/templates/' + name + '.hbs', 'utf-8');
+  return fs.readFileSync(`./test/templates/${name}.hbs`, 'utf-8');
 };
 
 const basicTpl = load('basic');
@@ -40,6 +40,7 @@ describe('the handlebars template engine', () => {
     result.should.equal('<div>HeaderDefaultContentMainOverwrittenContent</div>');
     done();
   });
+
   it('should be able to render templates with a style', (done) => {
     const renderer = new Renderer(basicTpl, layoutUseTpl, style);
     let result = renderer.render(data);
@@ -48,4 +49,3 @@ describe('the handlebars template engine', () => {
     done();
   });
 });
-

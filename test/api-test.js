@@ -7,7 +7,6 @@ const should = require('should');
 const moment = require('moment-timezone');
 const Renderer = require('../index');
 
-
 /**
  * Documented API testing (stuff on README should work as expected)
  */
@@ -58,35 +57,35 @@ describe('The README examples', () => {
   });
 
   it('should pass the formatting example', () => {
-    const tpl = '<p>You paid ${{nfc price}} on {{df date}}</p>';
+    const tpl = '<p>You paid {{nfc price}} on {{df date}}</p>';
     const renderer = new Renderer(tpl);
-    const ts = '07-22-2016 13:37:00';
+    const ts = '07-22-2018 13:37:00';
     const format = 'MM-DD-YYYY HH:mm:ss';
     const tz = moment.tz.guess();
-    const yesterday = moment.tz(ts, format, tz);
+    const yesterday = moment.parseZone(ts, format, tz);
     const result = renderer.render({ price: 1.99, date: yesterday });
-    const expectedResult = '<p>You paid $1.99 on 07/22/2016</p>';
+    const expectedResult = '<p>You paid $1.99 on 07/22/2018</p>';
     result.should.equal(expectedResult);
   });
 
   it('should pass the formatting example directly from the template', () => {
-    const tpl = '<p>You paid ${{nfc price}} on {{dff date \'YYYY-DD-MM HH:mm:ss\'}}</p>';
+    const tpl = '<p>You paid {{nfc price}} on {{dff date \'YYYY-DD-MM HH:mm:ss\'}}</p>';
     const renderer = new Renderer(tpl);
-    const ts = '07-22-2016 13:37:00';
+    const ts = '2018-07-22 13:37:00';
     const result = renderer.render({ price: 1.99, date: ts });
-    const expectedResult = '<p>You paid $1.99 on 2016-22-07 13:37:00</p>';
+    const expectedResult = '<p>You paid $1.99 on 2018-22-07 13:37:00</p>';
     result.should.equal(expectedResult);
   });
 
   it('should pass the formatting example with german locale', () => {
-    const tpl = '<p>You paid ${{nfc price}} on {{df date}}</p>';
+    const tpl = '<p>You paid {{nfc price}} on {{df date}}</p>';
     const renderer = new Renderer(tpl, null, null, { locale: 'de_DE' });
-    const ts = '07-22-2016 13:37:00';
+    const ts = '07-22-2018 13:37:00';
     const format = 'MM-DD-YYYY HH:mm:ss';
     const tz = moment.tz.guess();
-    const yesterday = moment.tz(ts, format, tz);
+    const yesterday = moment.parseZone(ts, format, tz);
     const result = renderer.render({ price: 1.99, date: yesterday });
-    const expectedResult = '<p>You paid $1,99 on 22.07.2016</p>';
+    const expectedResult = '<p>You paid 1,99€ on 22.07.2018</p>';
     result.should.equal(expectedResult);
   });
 });

@@ -1,6 +1,6 @@
 {
   "name": "@restorecommerce/handlebars-helperized",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Opininated handlebars based templating engine for rendering e-mail like content",
   "main": "index",
   "author": "Invend GmbH",
@@ -18,21 +18,21 @@
     "i18n"
   ],
   "dependencies": {
-    "handlebars": "^4.0.10",
+    "handlebars": "^4.0.11",
     "handlebars-layouts": "^3.1.4",
-    "juice": "^4.2.0",
-    "lodash": "^4.17.4",
-    "moment-timezone": "^0.5.13",
-    "numbro": "^1.11.0"
+    "juice": "^4.3.1",
+    "lodash": "^4.17.10",
+    "moment-timezone": "^0.5.20",
+    "numbro": "^2.1.0"
   },
   "devDependencies": {
-    "@restorecommerce/eslint-config-restorecommerce": "^0.1.0",
-    "coveralls": "^3.0.0",
+    "@restorecommerce/eslint-config-restorecommerce": "^0.1.1",
+    "coveralls": "^3.0.1",
     "is-generator": "^1.0.3",
     "istanbul": "^0.4.5",
     "jshint": "^2.9.5",
-    "mocha": "^4.0.1",
-    "should": "^13.1.2"
+    "mocha": "^5.2.0",
+    "should": "^13.2.1"
   },
   "scripts": {
     "test": "npm run lint && npm run mocha",
