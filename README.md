@@ -152,7 +152,7 @@ const Renderer = require('handlebars-helperized');
 const moment = require('moment-timezone');
 
 // initialize a renderer instance with a template string
-const tpl = '<p>You paid {{nfc price}} on {{df date}}</p>';
+const tpl = '<p>You paid {{nfc price cs="$" csPos="postfix"}} on {{df date}}</p>';
 const renderer = new Renderer(tpl, null, null, { locale: 'de_DE' });
 
 // create a timestamp & use the renderer with arbitrary contextual data
