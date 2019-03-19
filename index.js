@@ -45,12 +45,8 @@ class Renderer {
   @param {Object} context: required data for the placeholders
   @return {String} html
   */
-  render(context, contentType) {
+  render(context) {
     let html = this.template(context);
-    let mediaStyle = '';
-    if (contentType && contentType === HTML_CONTENT_TYPE) {
-      mediaStyle = this.style;
-    }
 
     if (this.style) {
       html = juice.inlineContent(html, this.style, {
@@ -61,7 +57,7 @@ class Renderer {
         applyWidthAttributes: true,
         applyHeightAttributes: true,
         insertPreservedExtraCss: true,
-        extraCss: mediaStyle
+        extraCss: this.style // to enable inlining of media queries
       });
     }
 

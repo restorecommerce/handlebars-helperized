@@ -1,6 +1,8 @@
 #  handlebars-helperized
 
-Opinionated handlebars based templating engine for rendering e-mail like content.
+Opinionated handlebars based templating engine for rendering HTML and other text
+based formats. It's especially suited for e-mail content as it supports style 
+inlining.
 
 The following helpers are injected by default:
 
@@ -27,8 +29,8 @@ const Renderer = require('handlebars-helperized');
 const tpl = `<h1>Hello {{name}}</h1>`;
 const renderer = new Renderer(tpl);
 
-// use the renderer with arbitrary contextual data and content type
-const result = renderer.render({ name: 'John' }, 'application/html');
+// use the renderer with arbitrary contextual data
+const result = renderer.render({ name: 'John' });
 // result === '<h1>Hello John</h1>';
 ```
 
@@ -54,8 +56,8 @@ const layout = `
 </p>`;
 const renderer = new Renderer(tpl, layout);
 
-// use the renderer with arbitrary contextual data and content type
-const result = renderer.render({ name: 'John' }, 'application/html');
+// use the renderer with arbitrary contextual data
+const result = renderer.render({ name: 'John' });
 // result === '<p>Hello, <i>John</i></h1>';
 ```
 
@@ -65,7 +67,7 @@ It is also possible to provide CSS content to be inlined in the produced HTML. S
 ...
 const style = 'div { color: red, text-align: center }';
 const renderer = new Renderer(tpl, layout, style);
-const result = renderer.render({ name: 'John' }, 'application/html');
+const result = renderer.render({ name: 'John' });
 // result === '<div style="color: red; text-align: center;">Hello, <i>John</i></div>'
 ```
 
@@ -89,8 +91,8 @@ const opts = {
 // renderer instance without a layout but with translation options
 const renderer = new Renderer(tpl, null, null, opts);
 
-// use the renderer with arbitrary contextual data and content type
-const result = renderer.render({ name: 'John' }, 'application/html');
+// use the renderer with arbitrary contextual data
+const result = renderer.render({ name: 'John' });
 // result === '<h1>Hallo John</h1>';
 ```
 
@@ -114,8 +116,8 @@ const opts = {
 // renderer instance without a layout but with translation options
 const renderer = new Renderer(tpl, null, null, opts);
 
-// use the renderer with arbitrary contextual data and content type
-const result = renderer.render({ name: 'John' }, 'application/html');
+// use the renderer with arbitrary contextual data
+const result = renderer.render({ name: 'John' });
 // result === '<h1>Hallo John</h1>';
 ```
 
@@ -133,12 +135,12 @@ const moment = require('moment-timezone');
 const tpl = '<p>You paid {{nfc price}} on {{df date}}</p>';
 const renderer = new Renderer(tpl);
 
-// create a timestamp & use the renderer with arbitrary contextual data and content type
+// create a timestamp & use the renderer with arbitrary contextual data
 const ts = '07-22-2018 13:37:00';
 const format = 'MM-DD-YYYY HH:mm:ss';
 const tz = moment.tz.guess();
 const yesterday = moment.parseZone(ts, format, tz);
-const result = renderer.render({ price: 1.99, date: yesterday }, 'application/html');
+const result = renderer.render({ price: 1.99, date: yesterday });
 // result: '<p>You paid $1.99 on 07/22/2018</p>';
 ```
 
@@ -155,12 +157,12 @@ const moment = require('moment-timezone');
 const tpl = '<p>You paid {{nfc price cs="$" csPos="postfix"}} on {{df date}}</p>';
 const renderer = new Renderer(tpl, null, null, { locale: 'de_DE' });
 
-// create a timestamp & use the renderer with arbitrary contextual data and content type
+// create a timestamp & use the renderer with arbitrary contextual data
 const ts = '07-22-2018 13:37:00';
 const format = 'MM-DD-YYYY HH:mm:ss';
 const tz = moment.tz.guess();
 const yesterday = moment.parseZone(ts, format, tz);
-const result = renderer.render({ price: 1.99, date: yesterday }, 'application/html');
+const result = renderer.render({ price: 1.99, date: yesterday });
 // result: '<p>You paid 1,99€ on 22.07.2018</p>';
 ```
 
