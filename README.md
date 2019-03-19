@@ -28,7 +28,7 @@ const tpl = `<h1>Hello {{name}}</h1>`;
 const renderer = new Renderer(tpl);
 
 // use the renderer with arbitrary contextual data
-const result = renderer.render({ name: 'John' });
+const result = renderer.render({ name: 'John' }, 'application/html');
 // result === '<h1>Hello John</h1>';
 ```
 
@@ -55,7 +55,7 @@ const layout = `
 const renderer = new Renderer(tpl, layout);
 
 // use the renderer with arbitrary contextual data
-const result = renderer.render({ name: 'John' });
+const result = renderer.render({ name: 'John' }, 'application/html');
 // result === '<p>Hello, <i>John</i></h1>';
 ```
 
@@ -65,7 +65,7 @@ It is also possible to provide CSS content to be inlined in the produced HTML. S
 ...
 const style = 'div { color: red, text-align: center }';
 const renderer = new Renderer(tpl, layout, style);
-const result = renderer.render({ name: 'John' });
+const result = renderer.render({ name: 'John' }, 'application/html');
 // result === '<div style="color: red; text-align: center;">Hello, <i>John</i></div>'
 ```
 
@@ -90,7 +90,7 @@ const opts = {
 const renderer = new Renderer(tpl, null, null, opts);
 
 // use the renderer with arbitrary contextual data
-const result = renderer.render({ name: 'John' });
+const result = renderer.render({ name: 'John' }, 'application/html');
 // result === '<h1>Hallo John</h1>';
 ```
 
@@ -115,7 +115,7 @@ const opts = {
 const renderer = new Renderer(tpl, null, null, opts);
 
 // use the renderer with arbitrary contextual data
-const result = renderer.render({ name: 'John' });
+const result = renderer.render({ name: 'John' }, 'application/html');
 // result === '<h1>Hallo John</h1>';
 ```
 
@@ -138,7 +138,7 @@ const ts = '07-22-2018 13:37:00';
 const format = 'MM-DD-YYYY HH:mm:ss';
 const tz = moment.tz.guess();
 const yesterday = moment.parseZone(ts, format, tz);
-const result = renderer.render({ price: 1.99, date: yesterday });
+const result = renderer.render({ price: 1.99, date: yesterday }, 'application/html');
 // result: '<p>You paid $1.99 on 07/22/2018</p>';
 ```
 
@@ -160,7 +160,7 @@ const ts = '07-22-2018 13:37:00';
 const format = 'MM-DD-YYYY HH:mm:ss';
 const tz = moment.tz.guess();
 const yesterday = moment.parseZone(ts, format, tz);
-const result = renderer.render({ price: 1.99, date: yesterday });
+const result = renderer.render({ price: 1.99, date: yesterday }, 'application/html');
 // result: '<p>You paid 1,99€ on 22.07.2018</p>';
 ```
 

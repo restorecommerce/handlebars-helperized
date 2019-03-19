@@ -12,6 +12,9 @@ const load = function loadTemplateFile(name) {
   return fs.readFileSync(`./test/templates/${name}.hbs`, 'utf-8');
 };
 
+const HTML_CONTENT_TYPE = 'application/html';
+const TEXT_CONTENT_TYPE = 'application/text';
+
 /**
  * Extension testing
  */
@@ -27,7 +30,7 @@ describe('the handlebars extensions', () => {
       };
       const renderer = new Renderer(tpl, null, null, opts);
       const context = { orderIRI: 'http://example.com/42' };
-      const result = renderer.render(context);
+      const result = renderer.render(context, HTML_CONTENT_TYPE);
       const expectedResult = `<h1 class="vclAlignCentered">Hello Admin</h1>\n\n` +
         `<p class="vclAlignCentered">\n  Payment Received: http://example.com/42\n</p>\n`;
       result.should.equal(expectedResult);
@@ -38,8 +41,8 @@ describe('the handlebars extensions', () => {
     it('should resolve placeholders', () => {
       const tpl = load('numbers');
       const renderer = new Renderer(tpl, null, null, {});
-      const result = renderer.render({});
-      const expectedResult = `number: 42\nprice: 42.00\nbytes: 42B\n`;
+      const result = renderer.render({}, TEXT_CONTENT_TYPE);
+      const expectedResult = 'number: 42\nprice: 42.00\nbytes: 42B\n';
       result.should.equal(expectedResult);
     });
   });
@@ -54,7 +57,7 @@ describe('the handlebars extensions', () => {
       const tz = moment.tz.guess();
       const yesterday = moment.tz(ts, format, tz);
       const context = { yesterday };
-      const result = renderer.render(context);
+      const result = renderer.render(context, TEXT_CONTENT_TYPE);
       const ago = yesterday.fromNow();
       const expectedResult = 'ago: ' + ago + `\ndf: 07/22/2018\ndtf: July 22, 2018 1:37 PM\n`;
       result.should.equal(expectedResult);
@@ -128,7 +131,7 @@ describe('the handlebars extensions', () => {
         cs: '$',
         csPos: 'postfix'
       };
-      const result = renderer.render(context);
+      const result = renderer.render(context, HTML_CONTENT_TYPE);
       // eslint-disable-next-line
       const expectedResult = `<h3>\n  Professor Oak\n</h3>\n\n<table id="invoicemeta" class="vclNoBorder vclFloatRight" style="min-width: 18em;">\n  <tr>\n    <td><b>invoice number</b></td>\n    <td class="vclAlignRight">42</td>\n  </tr>\n  <tr>\n    <td>order number</td>\n    <td class="vclAlignRight">24</td>\n  </tr>\n  <tr>\n    <td>order date</td>\n    <td class="vclAlignRight">07/22/2018</td>\n  </tr>\n</table>\n\n<div class="vclClear"></div>\n<br>\n<br>\n\n<table id="address" class="vclTable">\n  <tbody>\n      <tr>\n        <td class="vclSpan-10p">billing address street</td>\n        <td>\n          \n           \n        </td>\n      </tr>\n      <tr>\n        <td> </td>\n        <td>the silph road</td>\n      </tr>\n      <tr>\n        <td> </td>\n        <td> </td>\n      </tr>\n      <tr>\n        <td> </td>\n        <td></td>\n      </tr>\n  </tbody>\n</table>\n\n<br>\n\n<table id="items" class="vclTable vclSumTable">\n  <thead>\n    <tr>\n      <th>position</th>\n      <th>name</th>\n      <th>quantity</th>\n      <th class="vclAlignRight">single price</th>\n      <th class="vclAlignRight">item total price</th>\n    </tr>\n  </thead>\n  <tbody>\n      <tr>\n        <td>42</td>\n        <td>raspberry\n          <br> squ1rtle\n        </td>\n        <td>9001</td>\n        <td class="vclAlignRight">26,918.97$</td>\n        <td class="vclAlignRight">\n            26,912.99$\n        </td>\n      </tr>\n    <tr class="vclNoBorder">\n      <td colspan="5">&nbsp;</td>\n    </tr>\n\n\n\n    <tr class="vclSumTableTotal">\n      <td colspan="3">total price</td>\n      <td colspan="2" class="vclAlignRight">888.88$</td>\n    </tr>\n  </tbody>\n</table>\n\n<br>\n\n\n<p class="vclAlignCentered">\n  brought to you by {{appName}}\n  <br>\n  <br>\n  <img src="cid:logo"/>\n  <br>\n  <br>\n  sending to {{street}}\n</p>\n\n<p class="vclAlignCentered">\n  cash: cash\n</p>\n`;
       result.should.equal(expectedResult);
