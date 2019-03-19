@@ -27,7 +27,7 @@ const Renderer = require('handlebars-helperized');
 const tpl = `<h1>Hello {{name}}</h1>`;
 const renderer = new Renderer(tpl);
 
-// use the renderer with arbitrary contextual data
+// use the renderer with arbitrary contextual data and content type
 const result = renderer.render({ name: 'John' }, 'application/html');
 // result === '<h1>Hello John</h1>';
 ```
@@ -54,7 +54,7 @@ const layout = `
 </p>`;
 const renderer = new Renderer(tpl, layout);
 
-// use the renderer with arbitrary contextual data
+// use the renderer with arbitrary contextual data and content type
 const result = renderer.render({ name: 'John' }, 'application/html');
 // result === '<p>Hello, <i>John</i></h1>';
 ```
@@ -89,7 +89,7 @@ const opts = {
 // renderer instance without a layout but with translation options
 const renderer = new Renderer(tpl, null, null, opts);
 
-// use the renderer with arbitrary contextual data
+// use the renderer with arbitrary contextual data and content type
 const result = renderer.render({ name: 'John' }, 'application/html');
 // result === '<h1>Hallo John</h1>';
 ```
@@ -114,7 +114,7 @@ const opts = {
 // renderer instance without a layout but with translation options
 const renderer = new Renderer(tpl, null, null, opts);
 
-// use the renderer with arbitrary contextual data
+// use the renderer with arbitrary contextual data and content type
 const result = renderer.render({ name: 'John' }, 'application/html');
 // result === '<h1>Hallo John</h1>';
 ```
@@ -133,7 +133,7 @@ const moment = require('moment-timezone');
 const tpl = '<p>You paid {{nfc price}} on {{df date}}</p>';
 const renderer = new Renderer(tpl);
 
-// create a timestamp & use the renderer with arbitrary contextual data
+// create a timestamp & use the renderer with arbitrary contextual data and content type
 const ts = '07-22-2018 13:37:00';
 const format = 'MM-DD-YYYY HH:mm:ss';
 const tz = moment.tz.guess();
@@ -155,7 +155,7 @@ const moment = require('moment-timezone');
 const tpl = '<p>You paid {{nfc price cs="$" csPos="postfix"}} on {{df date}}</p>';
 const renderer = new Renderer(tpl, null, null, { locale: 'de_DE' });
 
-// create a timestamp & use the renderer with arbitrary contextual data
+// create a timestamp & use the renderer with arbitrary contextual data and content type
 const ts = '07-22-2018 13:37:00';
 const format = 'MM-DD-YYYY HH:mm:ss';
 const tz = moment.tz.guess();
