@@ -7,7 +7,6 @@ const defaultOpts = {
   locale: 'en_US',
   texts: {}
 };
-const HTML_CONTENT_TYPE = 'application/html';
 
 // Initializes and configures a custom handlebars instance
 function init(options) {
