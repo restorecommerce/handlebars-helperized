@@ -1,6 +1,6 @@
 {
   "name": "@restorecommerce/handlebars-helperized",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Opininated handlebars based templating engine for rendering e-mail like content",
   "main": "index",
   "author": "Invend GmbH",
@@ -18,27 +18,27 @@
     "i18n"
   ],
   "dependencies": {
-    "handlebars": "^4.0.12",
+    "handlebars": "^4.1.2",
     "handlebars-layouts": "^3.1.4",
-    "juice": "^4.3.2",
-    "lodash": "^4.17.11",
-    "moment-timezone": "^0.5.21",
-    "numbro": "^2.1.0"
+    "juice": "^5.2.0",
+    "lodash": "^4.17.14",
+    "moment-timezone": "^0.5.26",
+    "numbro": "^2.1.2"
   },
   "devDependencies": {
-    "@restorecommerce/eslint-config-restorecommerce": "^0.1.1",
-    "coveralls": "^3.0.2",
+    "@restorecommerce/eslint-config-restorecommerce": "^0.1.2",
+    "coveralls": "^3.0.5",
     "is-generator": "^1.0.3",
-    "istanbul": "^0.4.5",
-    "jshint": "^2.9.6",
-    "mocha": "^5.2.0",
+    "jshint": "^2.10.2",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
     "should": "^13.2.3"
   },
   "scripts": {
-    "test": "npm run lint && npm run mocha",
+    "test": "nyc mocha",
     "lint": "eslint *.json *.js",
     "mocha": "mocha ./test/*",
-    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec ./test/*.js"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "engines": {
     "node": ">= 8.0.0"
