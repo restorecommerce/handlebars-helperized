@@ -55,7 +55,8 @@ class Renderer {
         preserveFontFaces: true,
         applyWidthAttributes: true,
         applyHeightAttributes: true,
-        insertPreservedExtraCss: true
+        insertPreservedExtraCss: true,
+        extraCss: this.style // to enable inlining of media queries
       });
     }
 
