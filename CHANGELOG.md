@@ -1,3 +1,7 @@
+### 0.1.6 (July 23rd, 2019)
+
+- prevent .git folder being published to npm
+
 ### 0.1.5 (June 17th, 2019)
 
 - Revert change from 0.1.3 with nfc formatting.
