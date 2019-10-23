@@ -1,3 +1,7 @@
+### 0.1.6 (October 24th, 2019)
+
+- Upgrade deps.
+
 ### 0.1.5 (June 17th, 2019)
 
 - Revert change from 0.1.3 with nfc formatting.
