@@ -1,6 +1,10 @@
-### 0.1.6 (October 24th, 2019)
+### 0.1.7 (October 24th, 2019)
 
 - Upgrade deps.
+
+### 0.1.6 (July 23rd, 2019)
+
+- prevent .git folder being published to npm
 
 ### 0.1.5 (June 17th, 2019)
 

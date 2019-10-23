@@ -1,7 +1,7 @@
-#  handlebars-helperized
+# handlebars-helperized
 
 Opinionated handlebars based templating engine for rendering HTML and other text
-based formats. It's especially suited for e-mail content as it supports style 
+based formats. It's especially suited for e-mail content as it supports style
 inlining.
 
 The following helpers are injected by default:
