@@ -1,3 +1,8 @@
+### 0.1.8 (July 9th, 2020)
+
+- Add custom helpers on class initialization and cover with unit test
+- Upgrade deps.
+
 ### 0.1.7 (October 24th, 2019)
 
 - Upgrade deps.
