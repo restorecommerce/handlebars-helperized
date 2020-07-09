@@ -9,7 +9,7 @@ const defaultOpts = {
 };
 
 // Initializes and configures a custom handlebars instance
-function init(options) {
+function init(options, customHelpersList) {
   // default values if nothing given
   const opts = _.defaults(options, defaultOpts);
   // the basic building block is the handlebars rendering engine
@@ -19,6 +19,14 @@ function init(options) {
   require('./lib/numbro-helpers')(hbs, opts); // numbers & currencies
   require('./lib/moment-helpers')(hbs, opts); // dates, times & durations
   require('./lib/custom-helpers')(hbs, opts); // everything else
+
+  // add custom helpers from rendering-srv
+  if (customHelpersList) {
+    for (let i = 0; i < customHelpersList.length; i++) {
+      const filePath = customHelpersList[i];
+      require(filePath) (hbs, opts);
+    }
+  }
   // extend rendering with layout functionality
   const handlebarsLayouts = require('handlebars-layouts');
   handlebarsLayouts.register(hbs);
@@ -31,8 +39,8 @@ class Renderer {
   @param {String} layout the optional layout
   @param {Object} text and localization string for the renderer
   */
-  constructor(template, layout, style, opts) {
-    this.hbs = init(opts);
+  constructor(template, layout, style, opts, customHelpersList) {
+    this.hbs = init(opts, customHelpersList);
     this.style = style;
     if (layout) {
       this.hbs.registerPartial('layout', layout);
