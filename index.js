@@ -22,8 +22,8 @@ function init(options, customHelpersList) {
 
   // add custom helpers from rendering-srv
   if (customHelpersList) {
-    for (let i = 0; i < customHelpersList.length; i++) {
-      const filePath = customHelpersList[i];
+    for (let customHelper of customHelpersList) {
+      const filePath = customHelper;
       require(filePath) (hbs, opts);
     }
   }
@@ -37,7 +37,8 @@ class Renderer {
   /**
   @param {String} template the template
   @param {String} layout the optional layout
-  @param {Object} text and localization string for the renderer
+  @param {String} style the style
+  @param {Array} customHelpersList contains a list of custom helpers (optional)
   */
   constructor(template, layout, style, opts, customHelpersList) {
     this.hbs = init(opts, customHelpersList);

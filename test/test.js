@@ -48,4 +48,13 @@ describe('the handlebars template engine', () => {
     result.should.equal('<div style="color: red; text-align: center;">John Doe</div>');
     done();
   });
+
+  it('should be able to render templates with a provided custom helper', () => {
+    const filePathList = ['./test/handlebars/helper-loud.js'];
+    const tpl = '<h1>Hello {{loud name}}</h1>';
+    const renderer = new Renderer(tpl, '', '', {}, filePathList );
+    const result = renderer.render({ name: 'John' });
+    const expectedResult = '<h1>Hello JOHN</h1>';
+    result.should.equal(expectedResult);
+  });
 });

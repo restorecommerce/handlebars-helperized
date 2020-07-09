@@ -13,6 +13,15 @@ The following helpers are injected by default:
 Additionally, a lightweight localization plug-in is provided through a handlebars
 extension `t`.
 
+Additional custom helpers can be provided from the service which makes use of
+this module by passing an array which contains the file's path relative to the
+root folder on class initialization.  
+ ```js
+// example
+const filePathList = ['./test/handlebars/helper-loud.js'];
+const renderer = new Renderer(tpl, '', '', {}, filePathList );
+```
+
 ## Usage
 
 This renderer can be used *standalone* in any node.js project on the server side.
