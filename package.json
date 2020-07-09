@@ -1,7 +1,7 @@
 {
   "name": "@restorecommerce/handlebars-helperized",
   "version": "0.1.8",
-  "description": "Opinionpm-nated handlebars based templating engine for rendering e-mail like content",
+  "description": "Opinionated handlebars based templating engine for rendering e-mail like content",
   "main": "index",
   "author": "Invend GmbH",
   "repository": {
